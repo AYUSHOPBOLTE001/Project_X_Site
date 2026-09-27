@@ -13,7 +13,7 @@ export default function Footer() {
       <section className="py-32 bg-[#000000] relative overflow-hidden">
         {/* Radial glow background */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#0078D4]/20 rounded-full blur-[120px] opacity-50 pointer-events-none"></div>
-        
+
         <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -28,9 +28,14 @@ export default function Footer() {
               One login. One dashboard. One campus.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button className="btn-secondary w-full sm:w-auto">
+              <a
+                href="https://github.com/AYUSHOPBOLTE001/Project_X_Site"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary w-full sm:w-auto"
+              >
                 VIEW ON GITHUB
-              </button>
+              </a>
             </div>
           </motion.div>
         </div>
@@ -40,7 +45,7 @@ export default function Footer() {
       <footer className="bg-black border-t border-white/5 py-12">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 mb-12">
-            
+
             {/* Left */}
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
               <span className="text-xl font-bold tracking-wider text-white mb-2">PROJECT X</span>
@@ -59,7 +64,7 @@ export default function Footer() {
             <div className="flex flex-col items-center md:items-end text-center md:text-right gap-4 justify-center">
               <span className="text-sm text-[#525252]">Built for Bennett University</span>
             </div>
-            
+
           </div>
 
           <div className="border-t border-white/5 pt-8 text-center text-sm text-[#525252]">
