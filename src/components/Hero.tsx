@@ -1,9 +1,27 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { useState, useEffect } from "react";
+
+const SLIDESHOW_IMAGES = [
+  "/images/dashboard001.png",
+  "/images/teacher_admin_panel_welcome.jpeg",
+  "/images/Project_x_side_panel.jpeg",
+  "/images/msg_section_showcase.jpeg",
+  "/images/ai_showcase.jpeg"
+];
 
 export default function Hero() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % SLIDESHOW_IMAGES.length);
+    }, 4000); // 4 seconds per slide
+    return () => clearInterval(timer);
+  }, []);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -100,21 +118,36 @@ export default function Hero() {
           </motion.div>
         </motion.div>
         
-        {/* Dashboard Preview Image */}
+        {/* Dashboard Preview Slideshow */}
         <motion.div
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.4, 0, 0.2, 1], delay: 0.6 }}
-          className="mt-16 relative max-w-5xl w-full mx-auto"
+          className="mt-16 relative max-w-md w-full mx-auto"
         >
-          <div className="relative rounded-t-xl overflow-hidden border border-white/10 border-b-0 shadow-[0_-20px_50px_rgba(0,120,212,0.15)] bg-[#0a0a0a] pt-4 px-4 sm:pt-6 sm:px-6">
+          <div className="relative rounded-t-xl overflow-hidden border border-white/10 border-b-0 shadow-[0_-20px_50px_rgba(0,120,212,0.15)] bg-[#0a0a0a] p-4 sm:p-6 pb-0 sm:pb-0">
+            {/* Ghost image to establish consistent container height based on natural aspect ratio */}
             <img 
-              src="/images/dashboard001.png" 
-              alt="Project X Dashboard Preview" 
-              className="w-full h-auto rounded-t-lg"
+              src={SLIDESHOW_IMAGES[0]} 
+              alt="ghost" 
+              className="w-full h-auto invisible block"
             />
+            
+            <AnimatePresence mode="sync">
+              <motion.img 
+                key={currentIndex}
+                src={SLIDESHOW_IMAGES[currentIndex]} 
+                alt={`Project X Preview ${currentIndex + 1}`} 
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -100 }}
+                transition={{ duration: 1.5, ease: "easeInOut" }}
+                className="absolute top-4 sm:top-6 left-4 sm:left-6 w-[calc(100%-2rem)] sm:w-[calc(100%-3rem)] h-auto rounded-t-lg shadow-2xl object-cover object-top"
+              />
+            </AnimatePresence>
+            
             {/* Overlay fade at the bottom to blend with background */}
-            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-10" />
+            <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black to-transparent z-10 pointer-events-none" />
           </div>
         </motion.div>
       </div>
