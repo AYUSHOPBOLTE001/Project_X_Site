@@ -145,6 +145,21 @@ export default function Hero() {
                 className="absolute top-4 sm:top-6 left-4 sm:left-6 w-[calc(100%-2rem)] sm:w-[calc(100%-3rem)] h-auto rounded-t-lg shadow-2xl object-cover object-top"
               />
             </AnimatePresence>
+
+            <div className="relative z-20 flex justify-center gap-2 py-4">
+              {SLIDESHOW_IMAGES.map((image, index) => (
+                <button
+                  key={image}
+                  type="button"
+                  onClick={() => setCurrentIndex(index)}
+                  aria-label={`Show Project X preview ${index + 1}`}
+                  aria-current={currentIndex === index ? "true" : undefined}
+                  className={`h-2 rounded-full transition-all ${
+                    currentIndex === index ? "w-8 bg-[#0078D4]" : "w-2 bg-white/30 hover:bg-white/60"
+                  }`}
+                />
+              ))}
+            </div>
             
             {/* Overlay fade at the bottom to blend with background */}
             <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black to-transparent z-10 pointer-events-none" />
