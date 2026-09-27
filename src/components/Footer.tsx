@@ -30,8 +30,6 @@ export default function Footer() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
                 href="https://github.com/AYUSHOPBOLTE001/Project_X_Site"
-                target="_blank"
-                rel="noopener noreferrer"
                 className="btn-secondary w-full sm:w-auto"
               >
                 VIEW ON GITHUB
