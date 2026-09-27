@@ -123,30 +123,25 @@ export default function Hero() {
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.4, 0, 0.2, 1], delay: 0.6 }}
-          className="mt-16 relative max-w-md w-full mx-auto"
+          className="mt-16 relative w-full mx-auto flex justify-center"
         >
-          <div className="relative rounded-t-xl overflow-hidden border border-white/10 border-b-0 shadow-[0_-20px_50px_rgba(0,120,212,0.15)] bg-[#0a0a0a] p-4 sm:p-6 pb-0 sm:pb-0">
-            {/* Ghost image to establish consistent container height based on natural aspect ratio */}
-            <img
-              src={SLIDESHOW_IMAGES[0]}
-              alt="ghost"
-              className="w-full h-auto invisible block"
-            />
+          <div className="relative w-[min(82vw,320px)] rounded-[2.75rem] border-[8px] border-[#202124] bg-[#050505] p-2 shadow-[0_0_0_1px_rgba(255,255,255,0.12),0_-20px_50px_rgba(0,120,212,0.18)]">
+            <div className="relative aspect-[9/17] overflow-hidden rounded-[2.1rem] bg-black">
+              <AnimatePresence mode="sync">
+                <motion.img
+                  key={currentIndex}
+                  src={SLIDESHOW_IMAGES[currentIndex]}
+                  alt={`Project X Preview ${currentIndex + 1}`}
+                  initial={{ opacity: 0, x: 100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -100 }}
+                  transition={{ duration: 1.5, ease: "easeInOut" }}
+                  className="absolute inset-0 h-full w-full object-contain p-2"
+                />
+              </AnimatePresence>
+            </div>
 
-            <AnimatePresence mode="sync">
-              <motion.img
-                key={currentIndex}
-                src={SLIDESHOW_IMAGES[currentIndex]}
-                alt={`Project X Preview ${currentIndex + 1}`}
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -100 }}
-                transition={{ duration: 1.5, ease: "easeInOut" }}
-                className="absolute top-4 sm:top-6 left-4 sm:left-6 w-[calc(100%-2rem)] sm:w-[calc(100%-3rem)] h-auto rounded-t-lg shadow-2xl object-cover object-top"
-              />
-            </AnimatePresence>
-
-            <div className="relative z-20 flex justify-center gap-2 py-4">
+            <div className="flex justify-center gap-2 py-3">
               {SLIDESHOW_IMAGES.map((image, index) => (
                 <button
                   key={image}
@@ -159,9 +154,6 @@ export default function Hero() {
                 />
               ))}
             </div>
-
-            {/* Overlay fade at the bottom to blend with background */}
-            <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black to-transparent z-10 pointer-events-none" />
           </div>
         </motion.div>
       </div>
