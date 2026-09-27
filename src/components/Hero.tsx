@@ -47,7 +47,7 @@ export default function Hero() {
       {/* Background Effects */}
       <div className="absolute inset-0 z-0 bg-grid opacity-20"></div>
       <div className="absolute inset-0 z-0 radial-gradient-glow opacity-40"></div>
-      
+
       {/* Particles (Inline simulation) */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         {[...Array(30)].map((_, i) => (
@@ -87,7 +87,7 @@ export default function Hero() {
           </motion.div>
 
           {/* Headline */}
-          <motion.h1 
+          <motion.h1
             variants={itemVariants}
             className="text-7xl sm:text-8xl lg:text-[10rem] font-bold tracking-tight gradient-text mb-6 leading-none text-white"
           >
@@ -95,7 +95,7 @@ export default function Hero() {
           </motion.h1>
 
           {/* Tagline */}
-          <motion.h2 
+          <motion.h2
             variants={itemVariants}
             className="text-xl sm:text-2xl text-[#a3a3a3] tracking-[0.2em] uppercase mb-8"
           >
@@ -103,7 +103,7 @@ export default function Hero() {
           </motion.h2>
 
           {/* Subtitle */}
-          <motion.p 
+          <motion.p
             variants={itemVariants}
             className="max-w-2xl text-lg text-[#525252] mb-12"
           >
@@ -117,7 +117,7 @@ export default function Hero() {
             </Link>
           </motion.div>
         </motion.div>
-        
+
         {/* Dashboard Preview Slideshow */}
         <motion.div
           initial={{ opacity: 0, y: 100 }}
@@ -127,17 +127,17 @@ export default function Hero() {
         >
           <div className="relative rounded-t-xl overflow-hidden border border-white/10 border-b-0 shadow-[0_-20px_50px_rgba(0,120,212,0.15)] bg-[#0a0a0a] p-4 sm:p-6 pb-0 sm:pb-0">
             {/* Ghost image to establish consistent container height based on natural aspect ratio */}
-            <img 
-              src={SLIDESHOW_IMAGES[0]} 
-              alt="ghost" 
+            <img
+              src={SLIDESHOW_IMAGES[0]}
+              alt="ghost"
               className="w-full h-auto invisible block"
             />
-            
+
             <AnimatePresence mode="sync">
-              <motion.img 
+              <motion.img
                 key={currentIndex}
-                src={SLIDESHOW_IMAGES[currentIndex]} 
-                alt={`Project X Preview ${currentIndex + 1}`} 
+                src={SLIDESHOW_IMAGES[currentIndex]}
+                alt={`Project X Preview ${currentIndex + 1}`}
                 initial={{ opacity: 0, x: 100 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -100 }}
@@ -154,13 +154,12 @@ export default function Hero() {
                   onClick={() => setCurrentIndex(index)}
                   aria-label={`Show Project X preview ${index + 1}`}
                   aria-current={currentIndex === index ? "true" : undefined}
-                  className={`h-2 rounded-full transition-all ${
-                    currentIndex === index ? "w-8 bg-[#0078D4]" : "w-2 bg-white/30 hover:bg-white/60"
-                  }`}
+                  className={`h-2 rounded-full transition-all ${currentIndex === index ? "w-8 bg-[#0078D4]" : "w-2 bg-white/30 hover:bg-white/60"
+                    }`}
                 />
               ))}
             </div>
-            
+
             {/* Overlay fade at the bottom to blend with background */}
             <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black to-transparent z-10 pointer-events-none" />
           </div>
@@ -168,7 +167,7 @@ export default function Hero() {
       </div>
 
       {/* Scroll Indicator */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 1 }}

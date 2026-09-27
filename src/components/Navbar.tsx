@@ -136,10 +136,11 @@ export default function Navbar() {
 
         {/* Mobile Menu Toggle */}
         <button
-          className="lg:hidden text-white z-50"
+          className="lg:hidden text-white z-50 bg-black p-2 rounded-md border border-white/20 flex items-center gap-2"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle menu"
         >
+          <span className="text-sm font-semibold tracking-widest uppercase">{isMobileMenuOpen ? 'Close' : 'Menu'}</span>
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
