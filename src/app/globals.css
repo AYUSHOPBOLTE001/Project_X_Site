@@ -121,7 +121,20 @@ body {
 
   /* Divider Line */
   .section-divider {
-    @apply w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent;
+    @apply w-full relative py-4;
+  }
+
+  .section-divider::before {
+    content: "";
+    @apply absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-full max-w-7xl h-px;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.06) 15%, rgba(0, 120, 212, 0.2) 50%, rgba(255, 255, 255, 0.06) 85%, transparent 100%);
+  }
+
+  .section-divider::after {
+    content: "";
+    @apply absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full;
+    background: rgba(0, 120, 212, 0.4);
+    box-shadow: 0 0 12px rgba(0, 120, 212, 0.3);
   }
 
   /* Stat Number */
@@ -268,4 +281,16 @@ body {
   .stat-number {
     @apply text-4xl;
   }
+}
+
+/* ===== QR CODE SCAN ANIMATION ===== */
+@keyframes scan {
+  0% { transform: translateY(-50px); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(200px); opacity: 0; }
+}
+
+.animate-scan {
+  animation: scan 3s ease-in-out infinite;
 }

@@ -67,7 +67,7 @@ export default function Team() {
   };
 
   return (
-    <section id="team" className="py-24 sm:py-32 bg-[#000000] relative overflow-hidden">
+    <section id="team" className="py-12 md:py-16 lg:py-20 bg-[#050505] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         
         <motion.div
@@ -99,7 +99,7 @@ export default function Team() {
             <motion.div 
               key={i} 
               variants={itemVariants} 
-              className="glass-card p-6 flex flex-col items-center text-center group hover:border-[#0078D4]/30 hover:bg-white/[0.05] transition-all duration-300 transform hover:-translate-y-1"
+              className="glass-card p-6 flex flex-col items-center text-center group hover:border-[#0078D4]/50 hover:bg-white/[0.08] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,120,212,0.15)]"
             >
               <div className="w-20 h-20 rounded-full mb-6 flex items-center justify-center bg-gradient-to-br from-[#0078D4] to-blue-600 shadow-[0_0_20px_rgba(0,120,212,0.3)] overflow-hidden">
                 {member.image ? (

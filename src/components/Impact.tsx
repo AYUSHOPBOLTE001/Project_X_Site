@@ -53,7 +53,7 @@ export default function Impact() {
   };
 
   return (
-    <section id="impact" className="py-24 sm:py-32 bg-[#0a0a0a] relative overflow-hidden">
+    <section id="impact" className="py-12 md:py-16 lg:py-20 bg-[#000000] relative overflow-hidden">
       {/* Background grid */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
 
@@ -101,7 +101,7 @@ export default function Impact() {
           </motion.div>
         </motion.div>
 
-        <div className="section-divider my-24"></div>
+        <div className="w-full h-px bg-white/5 my-16 sm:my-24"></div>
 
         {/* Roadmap */}
         <motion.div
@@ -143,7 +143,7 @@ export default function Impact() {
           </div>
         </motion.div>
 
-        <div className="section-divider my-24"></div>
+        <div className="w-full h-px bg-white/5 my-16 sm:my-24"></div>
 
         {/* Future Vision */}
         <motion.div

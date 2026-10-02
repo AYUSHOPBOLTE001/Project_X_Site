@@ -71,25 +71,25 @@ export default function HowItWorks() {
   };
 
   return (
-    <section id="howitworks" className="py-24 sm:py-32 bg-section text-white relative overflow-hidden">
+    <section id="howitworks" className="py-12 md:py-16 lg:py-20 bg-[#000000] text-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
-          className="mb-20"
+          className="mb-12"
         >
-          <p className="text-xs font-semibold tracking-[0.3em] uppercase text-[#0078D4] mb-4">
+          <p className="text-xs font-semibold tracking-[0.3em] uppercase text-[#0078D4] mb-3">
             05 — HOW IT WORKS
           </p>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight uppercase">
+          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight uppercase">
             FROM OPEN TO YOUR DASHBOARD IN SECONDS
           </h2>
         </motion.div>
 
         {/* Timeline */}
-        <div className="relative mb-32">
+        <div className="relative mb-16">
           {/* Desktop Timeline Line */}
           <div className="hidden md:block absolute top-10 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
           
@@ -191,8 +191,6 @@ export default function HowItWorks() {
           ))}
         </motion.div>
       </div>
-      
-      <div className="section-divider" />
     </section>
   );
 }

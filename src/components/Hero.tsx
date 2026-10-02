@@ -1,8 +1,8 @@
 "use client";
-
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import Typewriter from "./Typewriter";
 
 const SLIDESHOW_IMAGES = [
   "/images/dashboard001.png",
@@ -43,7 +43,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black pt-20">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black pt-20">
       {/* Background Effects */}
       <div className="absolute inset-0 z-0 bg-grid opacity-20"></div>
       <div className="absolute inset-0 z-0 radial-gradient-glow opacity-40"></div>
@@ -89,18 +89,18 @@ export default function Hero() {
           {/* Headline */}
           <motion.h1
             variants={itemVariants}
-            className="text-7xl sm:text-8xl lg:text-[10rem] font-bold tracking-tight gradient-text mb-6 leading-none text-white"
+            className="text-5xl sm:text-7xl lg:text-[10rem] font-bold tracking-tight gradient-text mb-6 leading-none text-white"
           >
             PROJECT X
           </motion.h1>
 
           {/* Tagline */}
-          <motion.h2
+          <motion.div
             variants={itemVariants}
-            className="text-xl sm:text-2xl text-[#a3a3a3] tracking-[0.2em] uppercase mb-8"
+            className="text-xl sm:text-2xl text-[#a3a3a3] tracking-[0.2em] uppercase mb-8 h-8"
           >
-            One Platform. One University.
-          </motion.h2>
+            <Typewriter text="One Platform. One University." delay={1200} />
+          </motion.div>
 
           {/* Subtitle */}
           <motion.p

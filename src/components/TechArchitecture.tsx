@@ -15,19 +15,19 @@ const TECH_STACK = [
 
 export default function TechArchitecture() {
   return (
-    <section id="architecture" className="py-24 sm:py-32 bg-black text-white relative overflow-hidden">
+    <section id="architecture" className="py-12 md:py-16 lg:py-20 bg-[#050505] text-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
-          className="mb-20 text-center md:text-left"
+          className="mb-10 text-center md:text-left"
         >
-          <p className="text-xs font-semibold tracking-[0.3em] uppercase text-[#0078D4] mb-4">
+          <p className="text-xs font-semibold tracking-[0.3em] uppercase text-[#0078D4] mb-3">
             06 — TECHNOLOGY
           </p>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight uppercase mb-4">
+          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight uppercase mb-3">
             ENGINEERED FOR SCALE
           </h2>
           <p className="text-lg md:text-xl text-[#a3a3a3] max-w-2xl">
@@ -35,25 +35,25 @@ export default function TechArchitecture() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           {/* Architecture Diagram */}
           <div className="relative">
             <div className="absolute inset-0 bg-[#0078D4]/5 blur-[100px] rounded-full pointer-events-none" />
             
-            <div className="flex flex-col items-center space-y-4 relative z-10">
+            <div className="flex flex-col items-center space-y-3 relative z-10">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="w-full glass-card p-6 text-center border-[#0078D4]/30 bg-[#0078D4]/10"
+                className="w-full glass-card p-5 text-center border-[#0078D4]/30 bg-[#0078D4]/10"
               >
-                <h3 className="font-bold tracking-[0.2em] uppercase text-[#0078D4]">
+                <h3 className="font-bold tracking-[0.2em] uppercase text-[#0078D4] text-sm sm:text-base">
                   Project X Android App
                 </h3>
               </motion.div>
 
-              <div className="w-px h-8 bg-white/20" />
+              <div className="w-px h-6 bg-white/20" />
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -67,7 +67,7 @@ export default function TechArchitecture() {
                 </h4>
               </motion.div>
 
-              <div className="w-px h-8 bg-white/20" />
+              <div className="w-px h-5 bg-white/20" />
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -81,7 +81,7 @@ export default function TechArchitecture() {
                 </h4>
               </motion.div>
 
-              <div className="w-px h-8 bg-white/20" />
+              <div className="w-px h-5 bg-white/20" />
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -95,7 +95,7 @@ export default function TechArchitecture() {
                 </h4>
               </motion.div>
 
-              <div className="w-px h-8 bg-white/20" />
+              <div className="w-px h-5 bg-white/20" />
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -185,8 +185,6 @@ export default function TechArchitecture() {
           </div>
         </motion.div>
       </div>
-      
-      <div className="section-divider" />
     </section>
   );
 }

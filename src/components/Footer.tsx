@@ -4,37 +4,52 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Github, Twitter, Linkedin, Mail } from "lucide-react";
 
+import QRCodeDisplay from "./QRCodeDisplay";
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
     <>
       {/* CTA Section */}
-      <section className="py-32 bg-[#000000] relative overflow-hidden">
+      <section className="py-24 sm:py-32 bg-[#000000] relative overflow-hidden">
         {/* Radial glow background */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#0078D4]/20 rounded-full blur-[120px] opacity-50 pointer-events-none"></div>
 
-        <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
+        <div className="max-w-4xl mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center justify-between gap-12 text-center md:text-left">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+            className="flex-1"
           >
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight uppercase mb-6 text-white">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase mb-4 text-white">
               READY TO UNIFY YOUR CAMPUS?
             </h2>
-            <p className="text-[#a3a3a3] text-xl mb-12 max-w-2xl mx-auto">
+            <p className="text-[#a3a3a3] text-lg mb-8">
               One login. One dashboard. One campus.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center md:items-start gap-4">
               <a
                 href="https://github.com/AYUSHOPBOLTE001/Project_X_Site"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-secondary w-full sm:w-auto"
               >
                 VIEW ON GITHUB
               </a>
             </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="shrink-0"
+          >
+            <QRCodeDisplay url="https://project-x-site-two.vercel.app/" />
           </motion.div>
         </div>
       </section>

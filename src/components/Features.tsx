@@ -371,7 +371,7 @@ export default function Features() {
   };
 
   return (
-    <section id="features" className="py-24 sm:py-32 bg-[#000000] relative overflow-hidden">
+    <section id="features" className="py-12 md:py-16 lg:py-20 bg-[#050505] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         <motion.div
           initial="hidden"

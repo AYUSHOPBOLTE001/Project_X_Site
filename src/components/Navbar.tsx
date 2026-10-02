@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
@@ -20,7 +20,7 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
 
-  // Scroll spy: observe which section is in viewport
+  // Scroll detection
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -29,11 +29,22 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
+
+  // Intersection Observer scroll spy
   useEffect(() => {
     const sectionIds = navLinks.map((l) => l.sectionId);
     const observers: IntersectionObserver[] = [];
-
-    // Track which sections are visible and how much
     const visibleSections = new Map<string, number>();
 
     sectionIds.forEach((id) => {
@@ -49,7 +60,6 @@ export default function Navbar() {
               visibleSections.delete(id);
             }
 
-            // Find the section with the highest intersection ratio
             let maxRatio = 0;
             let maxId = "";
             visibleSections.forEach((ratio, sectionId) => {
@@ -59,7 +69,6 @@ export default function Navbar() {
               }
             });
 
-            // If no sections visible and we're near top, clear active
             if (visibleSections.size === 0 && window.scrollY < 300) {
               setActiveSection("");
             } else if (maxId) {
@@ -84,19 +93,19 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 h-20 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 h-16 sm:h-20 transition-all duration-300 ${
         isScrolled
           ? "bg-black/90 backdrop-blur-md border-b border-white/5"
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 h-full flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 h-full flex items-center justify-between">
         {/* Logo */}
         <Link
           href="/"
-          className="flex items-center gap-3 text-white font-bold tracking-[0.3em] uppercase text-sm z-50"
+          className="flex items-center gap-2 sm:gap-3 text-white font-bold tracking-[0.3em] uppercase text-xs sm:text-sm z-50"
         >
-          <img src="/images/LO.png" alt="Project X Logo" className="w-8 h-8 object-contain" />
+          <img src="/images/LO.png" alt="Project X Logo" className="w-7 h-7 sm:w-8 sm:h-8 object-contain" />
           PROJECT X
         </Link>
 
@@ -113,8 +122,6 @@ export default function Navbar() {
                 }`}
               >
                 {link.name}
-
-                {/* Animated blue underline bar */}
                 {isActive && (
                   <motion.div
                     layoutId="activeNavUnderline"
@@ -136,12 +143,21 @@ export default function Navbar() {
 
         {/* Mobile Menu Toggle */}
         <button
-          className="lg:hidden text-white z-50 bg-black p-2 rounded-md border border-white/20 flex items-center gap-2"
+          className="lg:hidden text-white z-50 w-10 h-10 flex items-center justify-center rounded-lg border border-white/10 bg-white/5 backdrop-blur-md active:scale-95 transition-transform"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle menu"
         >
-          <span className="text-sm font-semibold tracking-widest uppercase">{isMobileMenuOpen ? 'Close' : 'Menu'}</span>
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          <AnimatePresence mode="wait">
+            {isMobileMenuOpen ? (
+              <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
+                <X size={20} />
+              </motion.div>
+            ) : (
+              <motion.div key="open" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
+                <Menu size={20} />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </button>
       </div>
 
@@ -149,36 +165,63 @@ export default function Navbar() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 bg-black z-40 flex flex-col items-center justify-center space-y-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 bg-black/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center"
           >
-            {navLinks.map((link) => {
-              const isActive = activeSection === link.sectionId;
-              return (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={`relative text-lg font-bold tracking-widest uppercase transition-colors ${
-                    isActive ? "text-[#0078D4]" : "text-white hover:text-[#0078D4]"
-                  }`}
-                >
-                  {link.name}
-                  {/* Blue dot indicator on mobile */}
-                  {isActive && (
-                    <motion.span
-                      layoutId="activeMobileDot"
-                      className="absolute -left-4 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-[#0078D4]"
-                      style={{
-                        boxShadow: "0 0 6px rgba(0, 120, 212, 0.8)",
-                      }}
-                    />
-                  )}
-                </Link>
-              );
-            })}
+            {/* Header label */}
+            <div className="absolute top-20 left-0 right-0 text-center">
+              <span className="text-[10px] font-semibold tracking-[0.4em] uppercase text-[#525252]">Navigation</span>
+            </div>
+
+            <nav className="flex flex-col items-center gap-1 w-full max-w-xs px-4">
+              {navLinks.map((link, index) => {
+                const isActive = activeSection === link.sectionId;
+                return (
+                  <motion.div
+                    key={link.name}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 20 }}
+                    transition={{ delay: index * 0.05, duration: 0.3 }}
+                    className="w-full"
+                  >
+                    <Link
+                      href={link.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={`flex items-center gap-4 w-full px-5 py-3.5 rounded-xl transition-all duration-200 ${
+                        isActive
+                          ? "bg-[#0078D4]/10 border border-[#0078D4]/30"
+                          : "border border-transparent hover:bg-white/5"
+                      }`}
+                    >
+                      <span className={`text-xs font-mono w-5 ${isActive ? "text-[#0078D4]" : "text-[#525252]"}`}>
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <span className={`text-sm font-semibold tracking-wider uppercase ${
+                        isActive ? "text-white" : "text-[#a3a3a3]"
+                      }`}>
+                        {link.name}
+                      </span>
+                      {isActive && (
+                        <motion.div
+                          layoutId="activeMobileDot"
+                          className="ml-auto w-1.5 h-1.5 rounded-full bg-[#0078D4]"
+                          style={{ boxShadow: "0 0 8px rgba(0, 120, 212, 0.8)" }}
+                        />
+                      )}
+                    </Link>
+                  </motion.div>
+                );
+              })}
+            </nav>
+
+            {/* Bottom branding */}
+            <div className="absolute bottom-8 text-center">
+              <p className="text-[10px] tracking-[0.3em] uppercase text-[#525252]">Team 257 · Bennett University</p>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

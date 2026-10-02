@@ -27,7 +27,7 @@ const itemVariants = {
 
 export default function Solution() {
   return (
-    <section id="solution" className="py-24 sm:py-32 bg-[#0a0a0a] relative overflow-hidden">
+    <section id="solution" className="py-12 md:py-16 lg:py-20 bg-[#000000] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         <motion.div
           initial="hidden"

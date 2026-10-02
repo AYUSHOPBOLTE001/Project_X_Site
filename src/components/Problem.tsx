@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import CountUp from "./CountUp";
 import { 
   Calendar, 
   Clock, 
@@ -48,7 +49,7 @@ export default function Problem() {
   };
 
   return (
-    <section id="problem" className="py-24 sm:py-32 bg-[#0a0a0a] relative overflow-hidden">
+    <section id="problem" className="py-12 md:py-16 lg:py-20 bg-[#050505] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         
         {/* Section Header */}
@@ -78,7 +79,7 @@ export default function Problem() {
             className="lg:w-5/12 flex flex-col justify-center"
           >
             <div className="mb-8">
-              <span className="stat-number text-[8rem] leading-none font-bold text-white block">10+</span>
+              <CountUp end={10} suffix="+" duration={2000} className="stat-number text-[8rem] leading-none font-bold text-white block" />
               <p className="text-xl text-[#a3a3a3] mt-4 font-medium">
                 separate places a student depends on for everyday university tasks
               </p>

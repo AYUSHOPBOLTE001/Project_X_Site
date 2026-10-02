@@ -9,11 +9,21 @@ import Impact from "@/components/Impact";
 import Team from "@/components/Team";
 import Footer from "@/components/Footer";
 import SplashScreen from "@/components/SplashScreen";
+import ScrollProgress from "@/components/ScrollProgress";
+import BackToTop from "@/components/BackToTop";
+import CursorGlow from "@/components/CursorGlow";
+
+import SectionIndicator from "@/components/SectionIndicator";
+import PresentationControls from "@/components/PresentationControls";
 
 export default function Home() {
   return (
     <main className="relative">
       <SplashScreen />
+      <ScrollProgress />
+      <CursorGlow />
+      <SectionIndicator />
+      <PresentationControls />
       <Navbar />
       <Hero />
       <div className="section-divider" />
@@ -31,6 +41,7 @@ export default function Home() {
       <div className="section-divider" />
       <Team />
       <Footer />
+      <BackToTop />
     </main>
   );
 }
